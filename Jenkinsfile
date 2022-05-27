@@ -2,7 +2,7 @@ pipeline{
     agent{
         label "nodejs"
     }
-    stages{
+    stages {
         stage("Install dependencies"){
             steps{
                 sh "npm ci"
@@ -20,12 +20,13 @@ pipeline{
                 sh "npm test"
             }
         }
-	stage('Release') {
-		steps {
-            sh '''
-                oc project efvdzx-greetings
-                oc start-build greeting-console --follow --wait
-            '''
+	    stage('Release') {
+            steps {
+                sh '''
+                    oc project efvdzx-greetings
+                    oc start-build greeting-console --follow --wait
+                '''
+            }
         }
     }
 }
